@@ -1,6 +1,20 @@
 # Customer Portal
 
-A comprehensive customer management solution that integrates with Business Central, built with modern web technologies to provide a seamless user experience.
+## 🌟 Overview
+
+The Customer Portal is a modern web application designed to streamline business operations by providing a user-friendly interface for managing customer interactions, orders, and inventory. It serves as a bridge between your business and customers, offering real-time access to important business data through seamless integration with Microsoft Dynamics 365 Business Central.
+
+### Who is this for?
+- **Business Owners**: Get a clear overview of your operations
+- **Sales Teams**: Manage customer orders and track inventory in real-time
+- **Customers**: Self-service portal for order tracking and account management
+- **Developers**: A modern tech stack with clear documentation
+
+### Key Benefits
+- **Efficiency**: Automate routine tasks and reduce manual data entry
+- **Accessibility**: Access your business data anytime, anywhere
+- **Insights**: Make data-driven decisions with real-time reporting
+- **Scalability**: Built to grow with your business needs
 
 ## 📋 Table of Contents
 - [Features](#-features)
