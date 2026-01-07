@@ -1,63 +1,164 @@
-# React + TypeScript + Vite
+# Customer Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A comprehensive customer management solution that integrates with Business Central, built with modern web technologies to provide a seamless user experience.
 
-Currently, two official plugins are available:
+## 📋 Table of Contents
+- [Features](#-features)
+- [Prerequisites](#-prerequisites)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [Running the Application](#-running-the-application)
+- [Development](#-development)
+- [Project Structure](#-project-structure)
+- [Troubleshooting](#-troubleshooting)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- **Modern UI**: Built with React and Tailwind CSS
+- **Real-time Data**: Live updates from Business Central
+- **Secure Authentication**: Protected routes and API endpoints
+- **Responsive Design**: Works on all devices
+- **Type Safety**: Full TypeScript support
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## 🛠 Prerequisites
 
-## Expanding the ESLint configuration
+Before you begin, ensure you have the following installed:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- [Node.js](https://nodejs.org/) (v16 or higher)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+- [Git](https://git-scm.com/)
+- Access to a Business Central environment
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/winfrey-Git/customer-portal.git
+   cd customer-portal
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. **Install dependencies** for both frontend and backend:
+   ```bash
+   # Install root dependencies
+   npm install
+
+   # Install server dependencies
+   cd server
+   npm install
+   cd ..
+   ```
+
+## ⚙️ Configuration
+
+1. **Create environment files**:
+   - In the root directory, copy `.env.example` to `.env`
+   - In the `server` directory, copy `.env.example` to `.env`
+
+2. **Configure environment variables** in both `.env` files:
+
+   Frontend (root/.env):
+   ```env
+   VITE_API_BASE_URL=http://localhost:3000
+   ```
+
+   Backend (server/.env):
+   ```env
+   # Server
+   PORT=3000
+   NODE_ENV=development
+
+   # Business Central
+   BC_API_BASE_URL=your_bc_api_url
+   BC_TENANT_ID=your_tenant_id
+   BC_CLIENT_ID=your_client_id
+   BC_CLIENT_SECRET=your_client_secret
+   BC_COMPANY_NAME=your_company_name
+   ```
+
+## 🚀 Running the Application
+
+1. **Start the backend server**:
+   ```bash
+   cd server
+   npm run dev
+   ```
+
+2. **In a new terminal, start the frontend**:
+   ```bash
+   # From the project root
+   npm run dev
+   ```
+
+3. **Access the application**:
+   - Frontend: http://localhost:5173
+   - Backend API: http://localhost:3000
+
+## 🛠 Development
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+- `npm run type-check` - Run TypeScript type checking
+
+### Project Structure
+
+```
+customer-portal/
+├── src/                  # Frontend source code
+│   ├── components/       # Reusable components
+│   ├── pages/            # Page components
+│   ├── context/          # React context providers
+│   └── assets/           # Static assets
+├── server/              # Backend server
+│   ├── src/             # Server source code
+│   └── package.json     # Server dependencies
+├── public/              # Public assets
+└── .env                 # Environment variables
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🐛 Troubleshooting
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Port already in use**:
+   - Check if another instance is running: `lsof -i :3000` (or your port)
+   - Kill the process: `kill -9 $(lsof -t -i:3000)`
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
+2. **Missing dependencies**:
+   ```bash
+   # From project root
+   rm -rf node_modules package-lock.json
+   npm install
+   cd server
+   rm -rf node_modules package-lock.json
+   npm install
+   ```
+
+3. **Environment variables not loading**:
+   - Ensure `.env` files exist in both root and server directories
+   - Restart your development server after changing environment variables
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Built with [Vite](https://vitejs.dev/)
+- UI powered by [Tailwind CSS](https://tailwindcss.com/)
+- Backend with [Express](https://expressjs.com/)
+- Integration with [Business Central API](https://learn.microsoft.com/en-us/dynamics365/business-central/)
       // Enable lint rules for React DOM
       reactDom.configs.recommended,
     ],
